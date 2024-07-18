@@ -4,16 +4,6 @@ import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart'
     show defaultTargetPlatform, kIsWeb, TargetPlatform;
 
-/// Default [FirebaseOptions] for use with your Firebase apps.
-///
-/// Example:
-/// ```dart
-/// import 'firebase_options.dart';
-/// // ...
-/// await Firebase.initializeApp(
-///   options: DefaultFirebaseOptions.currentPlatform,
-/// );
-/// ```
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
@@ -49,21 +39,4 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDzcqfkrM7CzyilcJdf0ckCqSg-cs-Qgoc',
-    appId: '1:32644345180:web:dff16b47fe012b092a2599',
-    messagingSenderId: '32644345180',
-    projectId: 'sho-pinit',
-    authDomain: 'sho-pinit.firebaseapp.com',
-    storageBucket: 'sho-pinit.appspot.com',
-    measurementId: 'G-WMY027B4K8',
-  );
-
-  static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyB9oJmxbQGIYPDQx1bUTT24ImQ2yagxd34',
-    appId: '1:32644345180:android:74160e374d405f202a2599',
-    messagingSenderId: '32644345180',
-    projectId: 'sho-pinit',
-    storageBucket: 'sho-pinit.appspot.com',
-  );
 }
