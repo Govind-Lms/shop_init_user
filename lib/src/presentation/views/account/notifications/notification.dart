@@ -45,7 +45,7 @@ class NotificationScreen extends StatelessWidget {
                           return ListTile(
                             leading: CircleAvatar(
                               radius: 30,
-                              backgroundColor: data.approveOrReject==true ?Colors.green : Colors.red,
+                              backgroundColor: data.approveOrReject == true ? Colors.green : Colors.red,
                               child: Text("${index+1}".toString(),style: AppStyle.titleStyle.copyWith(color: Theme.of(context).primaryColorLight),),
                             ),
                             title: Text("${data.title}",style: AppStyle.titleStyle,),

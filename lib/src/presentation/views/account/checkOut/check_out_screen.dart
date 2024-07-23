@@ -20,9 +20,9 @@ class CheckOutScreen extends StatefulWidget {
 }
 
 class _CheckOutScreenState extends State<CheckOutScreen> {
-  @override
-  final counter = Counter();
   
+  final counter = Counter();
+  @override  
   Widget build(BuildContext context) {
     final theme  = Theme.of(context);
     return Scaffold(

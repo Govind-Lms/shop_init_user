@@ -1,7 +1,7 @@
 class NotificaitonModel {
   String? title;
   String? body;
-  String? approveOrReject;
+  bool? approveOrReject;
   String? details;
 
   NotificaitonModel(
@@ -10,7 +10,7 @@ class NotificaitonModel {
   factory NotificaitonModel.fromJson(Map<String, dynamic> doc) {
     if (doc.isEmpty) {}
     return NotificaitonModel(
-        approveOrReject: doc['approveOrReject'],
+        approveOrReject: doc['approve'],
         body: doc['body'],
         details: doc['details'],
         title: doc['title']);

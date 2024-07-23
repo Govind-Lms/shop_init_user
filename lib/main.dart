@@ -9,6 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shop_init/src/const/constant.dart';
 import 'package:shop_init/src/const/my_theme.dart';
 import 'package:shop_init/src/presentation/views/account/checkOut/pages/continue_shopping.dart';
+import 'package:shop_init/src/presentation/views/account/my_address/address_screen.dart';
 import 'package:shop_init/src/presentation/views/account/notifications/notification.dart';
 import 'package:shop_init/src/core/state_management/bloc/add_to_cart/add_to_cart_bloc.dart';
 import 'package:shop_init/src/core/state_management/bloc/order/order_bloc.dart';
@@ -31,7 +32,6 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await setupFlutterNotifications();
   showFlutterNotification(message);
- print('Handling a background message ${message.messageId}');
 }
 
 late AndroidNotificationChannel channel;
@@ -92,8 +92,6 @@ void main() async{
   await setup();
   final prefs = await SharedPreferences.getInstance();
   final onBoardingFirstTime =  prefs.getBool("isFirstTime") ?? true;
-  
-  print(onBoardingFirstTime);
   runApp( MyApp(onBoardingFirstTime: onBoardingFirstTime));
 }
 
@@ -156,6 +154,7 @@ class MyApp extends StatelessWidget {
           '/myOrders' : (context) => const MyOrdersScreen(),
           '/notification': (context) => const NotificationScreen(),
           '/continueShopping' : (_)=> const ContinueShoppingPart(),
+          '/shipping': (_)=> const AddressScreen(),
         },
       ),
     );

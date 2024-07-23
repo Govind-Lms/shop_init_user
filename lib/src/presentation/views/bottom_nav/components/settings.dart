@@ -30,7 +30,9 @@ class SettingsPart extends StatelessWidget {
             // ),
             const Gap(10.0),
             ListTile(
-              onTap: () {},
+              onTap: () {
+                navName(context, "/shipping");
+              },
               leading:  Icon(CupertinoIcons.home,color: theme.primaryColorDark,),
               title: Text(
                 'My Addresses',
