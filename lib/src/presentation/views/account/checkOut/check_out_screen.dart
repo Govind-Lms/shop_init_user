@@ -10,6 +10,7 @@ import 'package:shop_init/src/core/notifier/quantity_notifier.dart';
 import 'package:shop_init/src/core/state_management/bloc/add_to_cart/add_to_cart_bloc.dart';
 import 'package:shop_init/src/presentation/views/account/checkOut/pages/place_order_page.dart';
 import 'package:shop_init/src/presentation/widgets/custom_appbar.dart';
+import 'package:shop_init/src/presentation/widgets/empty.dart';
 
 class CheckOutScreen extends StatefulWidget {
   const CheckOutScreen({super.key});
@@ -46,7 +47,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                   builder: (context, state) {
                     if (state.cartLists.isEmpty) {
                       return const Center(
-                        child: Text('No Products'),
+                        child: EmptyPage(title: "Add some to the cart"),
                       );
                     } else {
                       return Column(
@@ -88,9 +89,13 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                                                 cartModel[index].category,
                                                 style: ProductStyle.categoryStyle.copyWith(color: theme.primaryColorDark),
                                               ),
-                                              Text(
-                                                cartModel[index].name,
-                                                style: ProductStyle.productNameStyle.copyWith(color: theme.primaryColorDark),
+                                              SizedBox(
+                                                width: MediaQuery.of(context).size.width /2,
+                                                child: Text(
+                                                  cartModel[index].name,
+                                                  overflow: TextOverflow.ellipsis,
+                                                  style: ProductStyle.productNameStyle.copyWith(color: theme.primaryColorDark),
+                                                ),
                                               ),
                                               RichText(
                                                 text: TextSpan(
@@ -128,11 +133,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                                                   valueListenable: counter.quantity,
                                                   builder: (context, value, child) {
                                                     return SizedBox(
-                                                      width: MediaQuery.of(context)
-                                                                  .size
-                                                                  .width /
-                                                              2 +
-                                                          50,
+                                                      width: MediaQuery.of(context).size.width /2 + 50,
                                                       child: Row(
                                                         mainAxisAlignment:
                                                             MainAxisAlignment
@@ -144,7 +145,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                                                                 Colors.grey,
                                                             child: IconButton(
                                                               icon: const Icon(
-                                                                  ViceIcons.minus),
+                                                                  AppIcons.minus),
                                                               iconSize: 15,
                                                               color: Colors.white,
                                                               onPressed: () {
@@ -185,7 +186,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                                                             child: Text(
                                                               '${cartModel[index].quantity}',
                                                               style:
-                                                                  ViceStyle.normalStyle.copyWith(color: theme.primaryColorDark),
+                                                                  AppStyle.normalStyle.copyWith(color: theme.primaryColorDark),
                                                             ),
                                                           ),
                                                           CircleAvatar(
@@ -195,7 +196,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                                                                     .primaryColorDark,
                                                             child: IconButton(
                                                                 icon:  Icon(
-                                                                    ViceIcons.plus,color: theme.primaryColor,),
+                                                                    AppIcons.plus,color: theme.primaryColor,),
                                                                 iconSize: 15,
                                                                 color: Colors.white,
                                                                 onPressed: () {
@@ -242,7 +243,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                                       ),
                                     
                                       Positioned(
-                                        right: 20,
+                                        right: 10,
                                         top: 10,
                                         child: CircleAvatar(
                                           radius: 20.0,
@@ -284,7 +285,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                               child: Center(
                                 child: Text(
                                   'Pre-order',
-                                  style: ViceStyle.normalStyle
+                                  style: AppStyle.normalStyle
                                       .copyWith(color: theme.primaryColor),
                                 ),
                               ),

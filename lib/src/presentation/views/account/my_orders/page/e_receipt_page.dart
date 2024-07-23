@@ -48,13 +48,13 @@ class EReceiptScreen extends StatelessWidget {
                     children: [
                       Text(
                         'Amount',
-                        style: ViceStyle.normalStyle.copyWith(
+                        style: AppStyle.normalStyle.copyWith(
                           color: theme.primaryColorDark,
                         ),
                       ),
                       Text(
                         "${orderModel.totalAmt} Ks",
-                        style: ViceStyle.normalStyle.copyWith(
+                        style: AppStyle.normalStyle.copyWith(
                           color: theme.primaryColorDark,
                         ),
                       ),
@@ -66,13 +66,13 @@ class EReceiptScreen extends StatelessWidget {
                     children: [
                       Text(
                         'Order Id',
-                        style: ViceStyle.normalStyle.copyWith(
+                        style: AppStyle.normalStyle.copyWith(
                           color: theme.primaryColorDark,
                         ),
                       ),
                       Text(
                         "#${orderModel.id}",
-                        style: ViceStyle.normalStyle.copyWith(
+                        style: AppStyle.normalStyle.copyWith(
                           color: theme.primaryColorDark,
                         ),
                       ),
@@ -84,13 +84,13 @@ class EReceiptScreen extends StatelessWidget {
                     children: [
                       Text(
                         'Delivery Charge',
-                        style: ViceStyle.normalStyle.copyWith(
+                        style: AppStyle.normalStyle.copyWith(
                           color: theme.primaryColorDark,
                         ),
                       ),
                       Text(
                         '0.00 Ks',
-                        style: ViceStyle.normalStyle.copyWith(
+                        style: AppStyle.normalStyle.copyWith(
                           color: theme.primaryColorDark,
                         ),
                       ),
@@ -115,13 +115,13 @@ class EReceiptScreen extends StatelessWidget {
                     children: [
                       Text(
                         'Total',
-                        style: ViceStyle.titleStyle.copyWith(
+                        style: AppStyle.titleStyle.copyWith(
                           color: theme.primaryColorDark,
                         ),
                       ),
                       Text(
                         '${orderModel.totalAmt} Ks',
-                        style: ViceStyle.titleStyle.copyWith(
+                        style: AppStyle.titleStyle.copyWith(
                           color: theme.primaryColorDark,
                         ),
                       ),
@@ -133,13 +133,13 @@ class EReceiptScreen extends StatelessWidget {
                     children: [
                       Text(
                         'Payment Method',
-                        style: ViceStyle.normalStyle.copyWith(
+                        style: AppStyle.normalStyle.copyWith(
                           color: theme.primaryColorDark,
                         ),
                       ),
                       Text(
                         'Cash',
-                        style: ViceStyle.normalStyle.copyWith(fontWeight: FontWeight.bold,color: theme.primaryColorDark),
+                        style: AppStyle.normalStyle.copyWith(fontWeight: FontWeight.bold,color: theme.primaryColorDark),
                       ),
                     ],
                   ),
@@ -149,11 +149,11 @@ class EReceiptScreen extends StatelessWidget {
                     children: [
                       Text(
                         'Date',
-                        style: ViceStyle.normalStyle.copyWith(color: theme.primaryColorDark),
+                        style: AppStyle.normalStyle.copyWith(color: theme.primaryColorDark),
                       ),
                       Text(
                         orderModel.timestamp!.toDate().toString().replaceRange(9, 25,''),
-                        style: ViceStyle.normalStyle.copyWith(fontWeight: FontWeight.bold,color: theme.primaryColorDark),
+                        style: AppStyle.normalStyle.copyWith(fontWeight: FontWeight.bold,color: theme.primaryColorDark),
                       ),
                     ],
                   ),
@@ -163,11 +163,11 @@ class EReceiptScreen extends StatelessWidget {
                     children: [
                       Text(
                         'Transaction Id',
-                        style: ViceStyle.normalStyle.copyWith(color: theme.primaryColorDark),
+                        style: AppStyle.normalStyle.copyWith(color: theme.primaryColorDark),
                       ),
                       Text(
                         orderModel.uid.substring(10),
-                        style: ViceStyle.normalStyle.copyWith(fontWeight: FontWeight.bold,color: theme.primaryColorDark),
+                        style: AppStyle.normalStyle.copyWith(fontWeight: FontWeight.bold,color: theme.primaryColorDark),
                       ),
                     ],
                   ),
@@ -189,7 +189,7 @@ class EReceiptScreen extends StatelessWidget {
                 child: Center(
                   child: Text(
                     'Download Receipt',
-                    style: ViceStyle.descStyle.copyWith(color: theme.primaryColor),
+                    style: AppStyle.descStyle.copyWith(color: theme.primaryColor),
                   ),
                 ),
               ),

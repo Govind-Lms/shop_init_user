@@ -18,6 +18,7 @@ import 'package:shop_init/src/presentation/views/products/components/color_part.
 import 'package:shop_init/src/presentation/views/products/components/plus_minus_part.dart';
 import 'package:shop_init/src/presentation/views/products/components/reviews_part.dart';
 import 'package:shop_init/src/presentation/views/products/components/sized_part.dart';
+import 'package:shop_init/src/presentation/views/products/photo_view.dart';
 import 'package:shop_init/src/presentation/widgets/custom_appbar.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -48,277 +49,280 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     final theme = Theme.of(context);
     return Scaffold(
       backgroundColor: theme.primaryColor,
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Stack(
-              children: [
-                ///mainImage
-                Container(
-                  height: MediaQuery.of(context).size.height / 2,
-                  width: MediaQuery.of(context).size.width,
-                  color: Colors.black12,
-                  child: PageView(
-                    controller: controller,
-                    onPageChanged: onPageChanged,
-                    children: List.generate(
-                      widget.productModel.images!.length + 1,
-                      (index) {
-                        if (index == 0) {
-                          return CachedNetworkImage(
-                            fit: BoxFit.cover,
-                            imageUrl: widget.productModel.imageUrl!,
-                          );
-                        } else {
-                          return Container(
-                            width: 80.0,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10.0),
-                                color: Colors.grey,
-                                border: Border.all(width: 1)),
-                            child: CachedNetworkImage(
-                              fit: BoxFit.cover,
-                              imageUrl: widget.productModel.images![index - 1],
-                            ),
-                          );
-                        }
-                      },
-                    ),
-                  ),
-                ),
-
-                ///appbar
-                const Positioned(
-                  child: Column(
-                    children: [
-                      Gap(30.0),
-                      CustomAppBar(
-                        isAnimated: false,
-                        showSearchBar: false,
-                        showDefinedName: true,
-                        showCart: false,
-                        name: "",
-                        showBack: true,
-                        showColor: true,
-                      ),
-                    ],
-                  ),
-                ),
-
-                ///heart
-                Positioned(
-                  top: 40,
-                  right: 20.0,
-                  child: CircleAvatar(
-                    radius: 18.0,
-                    backgroundColor: theme.primaryColor.withOpacity(.2),
-                    child: IconButton(
-                      iconSize: 20.0,
-                      onPressed: () async {
-                        if (widget.productModel.isFavorite == false) {
-                          await itemRef
-                              .doc('products')
-                              .collection(categoryName)
-                              .doc(widget.productModel.id)
-                              .update({
-                            'isFavorite': true,
-                          }).whenComplete(
-                            () async {
-                              await wishListRef
-                                  .doc(widget.productModel.id)
-                                  .set({
-                                'name': widget.productModel.name,
-                                'id': widget.productModel.id,
-                                'category': widget.productModel.category,
-                                'isFavorite': true,
-                                'desc': widget.productModel.desc,
-                                'stocks': widget.productModel.stocks,
-                                'popularity': widget.productModel.popularity,
-                                'price': widget.productModel.price,
-                                'discountPercent':
-                                    widget.productModel.discountPercent,
-                                'discountedPrice':
-                                    widget.productModel.discountedPrice,
-                                'imageUrl': widget.productModel.imageUrl,
-                                'attributes': widget.productModel.attributes,
-                                'images': widget.productModel.images,
-                                'isFeatured': widget.productModel.isFeatured,
-                                'isDiscounted':
-                                    widget.productModel.isDiscounted,
-                                'timestamp': widget.productModel.timestamp,
-                              });
-                            },
-                          );
-                          setState(() {
-                            widget.productModel.isFavorite = true;
-                          });
-                        } else {
-                          await itemRef
-                              .doc('products')
-                              .collection(categoryName)
-                              .doc(widget.productModel.id)
-                              .update({
-                            'isFavorite': false,
-                          });
-                          setState(() {
-                            widget.productModel.isFavorite = false;
-                          });
-                          await wishListRef
-                              .doc(widget.productModel.id)
-                              .delete()
-                              .whenComplete(() {
-                            widget.productModel.isFavorite = false;
-                          });
-                        }
-                      },
-                      icon: Icon(widget.productModel.isFavorite == false
-                          ? ViceIcons.heart
-                          : ViceIcons.heartFill),
-                    ),
-                  ),
-                ),
-
-                ///images
-                Positioned(
-                  bottom: 10,
-                  left: 10.0,
-                  right: 10.0,
-                  child: SmoothPageIndicator(
-                      controller: controller,
-                      count: widget.productModel.images!.length + 1,
-                      onDotClicked: onDotClicked,
-                      axisDirection: Axis.horizontal,
-                      effect: const ExpandingDotsEffect(
-                        activeDotColor: Colors.black,
-                        dotColor: Colors.white,
-                        dotHeight: 10,
-                        dotWidth: 30,
-                      )),
-                ),
-              ],
-            ),
-
-            ///details
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Stack(
                 children: [
-                  Row(
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.all(4.0),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10.0),
-                          color: Colors.yellow.withOpacity(.8),
-                        ),
-                        child: Text(' ${widget.productModel.discountPercent}% ',
-                            style: ProductStyle.discountStyle.copyWith(color: theme.primaryColorDark),),
-                      ),
-                      const Gap(10.0),
-                      Text(
-                        '${widget.productModel.price}Ks',
-                        style: ViceStyle.priceStyle.copyWith(color: theme.primaryColorDark),
-                      ),
-                      const Gap(10.0),
-                      Text(
-                        '${widget.productModel.discountedPrice}Ks',
-                        style: ViceStyle.discountedPriceStyle.copyWith(color: theme.primaryColorDark),
-                      ),
-                    ],
-                  ),
-
-                  const Gap(10.0),
-
-                  Text(
-                    widget.productModel.name ?? '',
-                    style: ViceStyle.titleStyle.copyWith(color: theme.primaryColorDark),
-                  ),
-
-                  Row(
-                    children: [
-                      Text(
-                        'In Stocks: ',
-                        style: ViceStyle.normalStyle.copyWith(color: theme.primaryColorDark),
-                      ),
-                      Text(widget.productModel.stocks.toString(),
-                          style: ViceStyle.normalStyle.copyWith(color: theme.primaryColorDark),),
-                    ],
-                  ),
-
-                  ///colors
-                  const Gap(10.0),
-                  Text(
-                    'Colors',
-                    style: ViceStyle.titleStyle.copyWith(color: theme.primaryColorDark),
-                  ),
-                  ColorPart(attributes: widget.productModel.attributes),
-
-                  ///sizes
-                  Text('Sizes', style: ViceStyle.titleStyle.copyWith(color: theme.primaryColorDark),),
-
-                  SizePart(
-                    attributes: widget.productModel.attributes,
-                  ),
-
-                  const DividerWidget(),
-
-                  ///checkout
-                  const CheckoutPart(),
-
-                  ///sizes
-                  const Gap(10.0),
-
-                  Text(
-                    'Description',
-                    style: ViceStyle.titleStyle.copyWith(color: theme.primaryColorDark),
-                  ),
-                  const Gap(10.0),
-                  Text(
-                    widget.productModel.desc ?? '',
-                    style: ViceStyle.normalStyle.copyWith(color: theme.primaryColorDark),
-                  ),
-                  const Gap(10),
-                  InkWell(
-                    onTap: () {
-                      showMaterialModalBottomSheet(
-                          context: context,
-                          builder: (context) {
-                            return const ReviewSectionPart();
-                          });
+                  ///mainImage
+                  GestureDetector(
+                    onTap: (){
+                      nav(context, PhotoView(images: widget.productModel.images!, image: widget.productModel.imageUrl!,));
                     },
                     child: Container(
+                      height: MediaQuery.of(context).size.height / 2,
                       width: MediaQuery.of(context).size.width,
-                      decoration:  BoxDecoration(
-                        color: theme.primaryColor,
-                        borderRadius: BorderRadius.circular(10),
-                        boxShadow:  [
-                          BoxShadow(
-                            offset: const Offset(3, 3),
-                            color: theme.primaryColorDark.withOpacity(.2),
-                            blurRadius: 6,
-                          ),
-                         ],
-                      ),
-                      padding: const EdgeInsets.symmetric(vertical: 20,horizontal: 10),
-                      child: Row(
-                        children: [
-                          Text(
-                            ' Reviews',
-                            style: ViceStyle.titleStyle.copyWith(color: theme.primaryColorDark),
-                          ),
-                          const Spacer(),
-                          Icon(Iconsax.arrow_down_1, color: theme.primaryColorDark,)
-                        ],
+                      color: Colors.black12,
+                      child: PageView(
+                        controller: controller,
+                        onPageChanged: onPageChanged,
+                        children: List.generate(
+                          widget.productModel.images!.length + 1,
+                          (index) {
+                            if (index == 0) {
+                              return CachedNetworkImage(
+                                fit: BoxFit.cover,
+                                alignment: Alignment.topCenter,
+                                imageUrl: widget.productModel.imageUrl!,
+                              );
+                            } else {
+                              return Container(
+                                width: 80.0,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10.0),
+                                    color: Colors.grey,
+                                ),
+                                child: CachedNetworkImage(
+                                  fit: BoxFit.cover,
+                                  alignment: Alignment.topCenter,
+                                  imageUrl: widget.productModel.images![index - 1],
+                                ),
+                              );
+                            }
+                          },
+                        ),
                       ),
                     ),
                   ),
-                  const Gap(10.0),
+        
+                  ///appbar
+                  CustomAppBar(
+                    isAnimated: false,
+                    showSearchBar: false,
+                    showDefinedName: true,
+                    showCart: false,
+                    name: "",
+                    showBack: true,
+                    showColor: true,
+                  ),
+        
+                  ///heart
+                  Positioned(
+                    top: 20,
+                    right: 20.0,
+                    child: CircleAvatar(
+                      radius: 18.0,
+                      backgroundColor: theme.primaryColor.withOpacity(.2),
+                      child: IconButton(
+                        iconSize: 20.0,
+                        color: theme.primaryColorDark,
+                        onPressed: () async {
+                          if (widget.productModel.isFavorite == false) {
+                            await itemRef
+                                .doc('products')
+                                .collection(categoryName)
+                                .doc(widget.productModel.id)
+                                .update({
+                              'isFavorite': true,
+                            }).whenComplete(
+                              () async {
+                                await wishListRef
+                                    .doc(widget.productModel.id)
+                                    .set({
+                                  'name': widget.productModel.name,
+                                  'id': widget.productModel.id,
+                                  'category': widget.productModel.category,
+                                  'isFavorite': true,
+                                  'desc': widget.productModel.desc,
+                                  'stocks': widget.productModel.stocks,
+                                  'popularity': widget.productModel.popularity,
+                                  'price': widget.productModel.price,
+                                  'discountPercent':
+                                      widget.productModel.discountPercent,
+                                  'discountedPrice':
+                                      widget.productModel.discountedPrice,
+                                  'imageUrl': widget.productModel.imageUrl,
+                                  'attributes': widget.productModel.attributes,
+                                  'images': widget.productModel.images,
+                                  'isFeatured': widget.productModel.isFeatured,
+                                  'isDiscounted':
+                                      widget.productModel.isDiscounted,
+                                  'timestamp': widget.productModel.timestamp,
+                                });
+                              },
+                            );
+                            setState(() {
+                              widget.productModel.isFavorite = true;
+                            });
+                          } else {
+                            await itemRef
+                                .doc('products')
+                                .collection(categoryName)
+                                .doc(widget.productModel.id)
+                                .update({
+                              'isFavorite': false,
+                            });
+                            setState(() {
+                              widget.productModel.isFavorite = false;
+                            });
+                            await wishListRef
+                                .doc(widget.productModel.id)
+                                .delete()
+                                .whenComplete(() {
+                              widget.productModel.isFavorite = false;
+                            });
+                          }
+                        },
+                        icon: Icon(widget.productModel.isFavorite == false
+                            ? AppIcons.heart
+                            : AppIcons.heartFill),
+                      ),
+                    ),
+                  ),
+        
+                  ///images
+                  Positioned(
+                    bottom: 10,
+                    left: 10.0,
+                    right: 10.0,
+                    child: SmoothPageIndicator(
+                        controller: controller,
+                        count: widget.productModel.images!.length + 1,
+                        onDotClicked: onDotClicked,
+                        axisDirection: Axis.horizontal,
+                        effect: const ExpandingDotsEffect(
+                          activeDotColor: Colors.black,
+                          dotColor: Colors.white,
+                          dotHeight: 10,
+                          dotWidth: 30,
+                        )),
+                  ),
                 ],
               ),
-            ),
-          ],
+        
+              ///details
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.all(4.0),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10.0),
+                            color: Colors.yellow.withOpacity(.8),
+                          ),
+                          child: Text(' ${widget.productModel.discountPercent}% ',
+                              style: ProductStyle.discountStyle.copyWith(color: theme.primaryColorDark),),
+                        ),
+                        const Gap(10.0),
+                        Text(
+                          '${widget.productModel.price}Ks',
+                          style: AppStyle.priceStyle.copyWith(color: theme.primaryColorDark),
+                        ),
+                        const Gap(10.0),
+                        Text(
+                          '${widget.productModel.discountedPrice}Ks',
+                          style: AppStyle.titleStyle.copyWith(color: theme.primaryColorDark),
+                        ),
+                      ],
+                    ),
+        
+                    const Gap(10.0),
+        
+                    Text(
+                      widget.productModel.name ?? '',
+                      style: AppStyle.titleStyle.copyWith(color: theme.primaryColorDark),
+                    ),
+        
+                    Row(
+                      children: [
+                        Text(
+                          'In Stocks: ',
+                          style: AppStyle.normalStyle.copyWith(color: theme.primaryColorDark),
+                        ),
+                        Text(widget.productModel.stocks.toString(),
+                            style: AppStyle.normalStyle.copyWith(color: theme.primaryColorDark),),
+                      ],
+                    ),
+        
+                    ///colors
+                    const Gap(10.0),
+                    Text(
+                      'Colors',
+                      style: AppStyle.titleStyle.copyWith(color: theme.primaryColorDark),
+                    ),
+                    ColorPart(attributes: widget.productModel.attributes),
+        
+                    ///sizes
+                    Text('Sizes', style: AppStyle.titleStyle.copyWith(color: theme.primaryColorDark),),
+        
+                    SizePart(
+                      attributes: widget.productModel.attributes,
+                    ),
+        
+                    const DividerWidget(),
+        
+                    ///checkout
+                    const CheckoutPart(),
+        
+                    ///sizes
+                    const Gap(10.0),
+        
+                    Text(
+                      'Description',
+                      style: AppStyle.titleStyle.copyWith(color: theme.primaryColorDark),
+                    ),
+                    const Gap(10.0),
+                    Text(
+                      widget.productModel.desc ?? '',
+                      style: AppStyle.normalStyle.copyWith(color: theme.primaryColorDark),
+                    ),
+                    const Gap(10),
+                    InkWell(
+                      onTap: () {
+                        showMaterialModalBottomSheet(
+                            context: context,
+                            builder: (context) {
+                              return const ReviewSectionPart();
+                            });
+                      },
+                      child: Container(
+                        width: MediaQuery.of(context).size.width,
+                        decoration:  BoxDecoration(
+                          color: theme.primaryColor,
+                          borderRadius: BorderRadius.circular(10),
+                          boxShadow:  [
+                            BoxShadow(
+                              offset: const Offset(3, 3),
+                              color: theme.primaryColorDark.withOpacity(.2),
+                              blurRadius: 6,
+                            ),
+                           ],
+                        ),
+                        padding: const EdgeInsets.symmetric(vertical: 20,horizontal: 10),
+                        child: Row(
+                          children: [
+                            Text(
+                              ' Reviews',
+                              style: AppStyle.titleStyle.copyWith(color: theme.primaryColorDark),
+                            ),
+                            const Spacer(),
+                            Icon(Iconsax.arrow_down_1, color: theme.primaryColorDark,)
+                          ],
+                        ),
+                      ),
+                    ),
+                    const Gap(10.0),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: Container(
@@ -363,7 +367,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                     child: Center(
                       child: Text(
                         'Add To Cart',
-                        style: ViceStyle.descStyle,
+                        style: AppStyle.descStyle,
                       ),
                     ),
                   ),
@@ -380,7 +384,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                     child: Center(
                       child: Text(
                         'Add To Cart',
-                        style: ViceStyle.descStyle.copyWith(color: theme.primaryColorDark.withOpacity(.3)),
+                        style: AppStyle.descStyle.copyWith(color: theme.primaryColorDark.withOpacity(.3)),
                       ),
                     ),
                   ),

@@ -185,7 +185,6 @@ class _OrderConfirmDialogState extends State<OrderConfirmDialog> {
                 GestureDetector(
                   onTap: () async{
                     navPop(context);
-
                   },
                   child: Container(
                     padding: const EdgeInsets.all(10.0),
@@ -316,13 +315,14 @@ class _OrderConfirmDialogState extends State<OrderConfirmDialog> {
                       });
 
                       ///setting orderLength to calculate most buy product
-                      await orderLengthRef
-                          .doc(widget.cartLists[i].id)
-                          .collection("orderLength")
-                          .doc(widget.orderId.toString())
-                          .set({
-                        'id': widget.orderId,
-                      });
+                     
+                      // await orderLengthRef
+                      //     .doc(widget.cartLists[i].id)
+                      //     .collection("orderLength")
+                      //     .doc(widget.orderId.toString())
+                      //     .set({
+                      //   'id': widget.orderId,
+                      // });
 
                       context.read<AddToCartBloc>()
                         .add(RemoveFromCartEvent(

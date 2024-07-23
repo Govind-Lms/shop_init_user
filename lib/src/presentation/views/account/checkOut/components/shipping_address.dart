@@ -20,12 +20,12 @@ class ShippingAddress extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Gap(10.0),
-          Text("Shipping Address",style: ViceStyle.titleStyle.copyWith(color: theme.primaryColor),),
+          Text("Shipping Address",style: AppStyle.titleStyle.copyWith(color: theme.primaryColor),),
           const Gap(10),
           ListTile(
             leading:  Icon(Iconsax.location,size: 24,color: theme.primaryColor,),
-            title: Text("Home",style: ViceStyle.normalStyle.copyWith(color: theme.primaryColor),),
-            subtitle: Text("No.5288, Securelink Co. Ltd.,",style: ViceStyle.descStyle.copyWith(color: theme.primaryColor),),
+            title: Text("Home",style: AppStyle.normalStyle.copyWith(color: theme.primaryColor),),
+            subtitle: Text("No.5288, Securelink Co. Ltd.,",style: AppStyle.descStyle.copyWith(color: theme.primaryColor),),
             trailing:  Icon(Iconsax.edit,size: 24,color: theme.primaryColor,),
           ),
         ],

@@ -25,7 +25,7 @@ class PlusMinusPart extends StatelessWidget {
                 radius: 20.0,
                 backgroundColor: Colors.grey,
                 child: IconButton(
-                  icon: const Icon(ViceIcons.minus),
+                  icon: const Icon(AppIcons.minus),
                   iconSize: 20,
                   color: Colors.white,
                   onPressed: () {
@@ -45,14 +45,14 @@ class PlusMinusPart extends StatelessWidget {
                 padding: const EdgeInsets.all(10.0),
                 child: Text(
                   stocks >0 ? counter.quantity.value.toString() : "0",
-                  style: ViceStyle.normalStyle,
+                  style: AppStyle.normalStyle,
                 ),
               ),
               CircleAvatar(
                 radius: 20.0,
                 backgroundColor: Colors.black,
                 child: IconButton(
-                  icon: const Icon(ViceIcons.plus),
+                  icon: const Icon(AppIcons.plus),
                   iconSize: 20,
                   color: Colors.white,
                   onPressed: () {

@@ -1,6 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 import 'package:shop_init/src/const/constant.dart';
 import 'package:shop_init/src/presentation/views/products/components/categorized_product_screen.dart';
 import 'package:shop_init/src/presentation/views/bottom_nav/components/category_widget.dart';
@@ -16,33 +16,19 @@ class CategoryScreen extends StatefulWidget {
 class _CategoryScreenState extends State<CategoryScreen> {
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     return SafeArea(
       child: CustomScrollView(
         slivers: [
           const SliverToBoxAdapter(
             child: CustomAppBar(
               isAnimated: true,
-              showDefinedName: false,
-              name: '',
+              showDefinedName: true,
+              name: 'Categories',
               showCart: true,
               showSearchBar: false,
             ),
           ),
-          SliverToBoxAdapter(
-            child: FadeInDown(
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Text(
-                  'Categories',
-                  style: GoogleFonts.poppins().copyWith(
-                      color: theme.primaryColorDark,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16),
-                ),
-              ),
-            ),
-          ),
+          
           SliverGrid.builder(
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,

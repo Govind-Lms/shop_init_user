@@ -23,7 +23,7 @@ class CheckoutPart extends StatelessWidget {
         child: Center(
           child: Text(
             'Checkout',
-            style: ViceStyle.normalStyle.copyWith(color: theme.primaryColorLight),
+            style: AppStyle.normalStyle.copyWith(color: theme.primaryColorLight),
           ),
         ),
       ),

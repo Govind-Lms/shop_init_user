@@ -33,10 +33,10 @@ class OrderDetailsPart extends StatelessWidget {
                   children: [
                     Text(
                       'Order Details',
-                      style: ViceStyle.normalStyle
+                      style: AppStyle.normalStyle
                           .copyWith(fontWeight: FontWeight.bold),
                     ),
-                    const Icon(ViceIcons.dropdown)
+                    const Icon(AppIcons.dropdown)
                   ],
                 ),
               ),
@@ -49,10 +49,10 @@ class OrderDetailsPart extends StatelessWidget {
                       children: [
                         Text(
                           'Order Details',
-                          style: ViceStyle.normalStyle
+                          style: AppStyle.normalStyle
                               .copyWith(fontWeight: FontWeight.bold),
                         ),
-                        const Icon(ViceIcons.dropup)
+                        const Icon(AppIcons.dropup)
                       ],
                     ),
                   ),
@@ -62,11 +62,11 @@ class OrderDetailsPart extends StatelessWidget {
                     children: [
                       Text(
                         'Order Id',
-                        style: ViceStyle.descStyle,
+                        style: AppStyle.descStyle,
                       ),
                       Text(
                         '#${orderModel.id}',
-                        style: ViceStyle.descStyle,
+                        style: AppStyle.descStyle,
                       ),
                     ],
                   ),
@@ -76,11 +76,11 @@ class OrderDetailsPart extends StatelessWidget {
                     children: [
                       Text(
                         'Order Placed',
-                        style: ViceStyle.descStyle,
+                        style: AppStyle.descStyle,
                       ),
                       Text(
                         readTimestamp(orderModel.timestamp),
-                        style: ViceStyle.descStyle,
+                        style: AppStyle.descStyle,
                       ),
                     ],
                   ),
@@ -90,11 +90,11 @@ class OrderDetailsPart extends StatelessWidget {
                     children: [
                       Text(
                         'Total Price',
-                        style: ViceStyle.descStyle,
+                        style: AppStyle.descStyle,
                       ),
                       Text(
                         '${orderModel.totalAmt} Ks',
-                        style: ViceStyle.descStyle,
+                        style: AppStyle.descStyle,
                       ),
                     ],
                   ),
@@ -107,19 +107,19 @@ class OrderDetailsPart extends StatelessWidget {
           if(orderModel.approve == "pending")
              Text(
               'Pending',
-              style: ViceStyle.descStyle
+              style: AppStyle.descStyle
                   .copyWith(fontWeight: FontWeight.normal,color: Colors.amber),
             )
             else if(orderModel.approve == "approve")
               Text(
               'Approve',
-              style: ViceStyle.descStyle
+              style: AppStyle.descStyle
                   .copyWith(fontWeight: FontWeight.normal,color: Colors.green),
             )
             else 
             Text(
               'Reject',
-              style: ViceStyle.descStyle
+              style: AppStyle.descStyle
                   .copyWith(fontWeight: FontWeight.normal,color: Colors.red),
             )
            

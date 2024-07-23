@@ -92,11 +92,11 @@ class _OrderBottomSheetState extends State<OrderBottomSheet> {
                             totalQty: totalQty,
                           );
                         });
-                        return false;
+                        return true;
                   },
                   label: Text(
                     "Slide to Place Order!",
-                    style: ViceStyle.normalStyle,
+                    style: AppStyle.normalStyle,
                   ),
                   icon: Center(
                     child: Icon(

@@ -46,9 +46,11 @@ class CustomAppBar extends StatelessWidget {
                                 onPressed: () {
                                   navPop(context);
                                 },
-                                icon:  CircleAvatar(
+                                icon: CircleAvatar(
                                     radius: 25.0,
-                                    backgroundColor: showColor == true ?   theme.primaryColor : Colors.transparent,
+                                    backgroundColor: showColor == true
+                                        ? theme.primaryColor
+                                        : Colors.transparent,
                                     child: Icon(
                                       CupertinoIcons.back,
                                       color: theme.primaryColorDark,
@@ -76,13 +78,23 @@ class CustomAppBar extends StatelessWidget {
                                       Navigator.of(context)
                                           .pushNamed('/checkout');
                                     },
-                                    child: Badge(
-                                        label: Text(cartList.length.toString()),
-                                        child:  Icon(ViceIcons.cart,color: theme.primaryColorDark,)),
+                                    child: cartList.length == 0
+                                        ? Icon(
+                                            AppIcons.cart,
+                                            color: theme.primaryColorDark,
+                                          )
+                                        : Badge(
+                                            label: Text(
+                                                cartList.length.toString()),
+                                            child: Icon(
+                                              AppIcons.cart,
+                                              color: theme.primaryColorDark,
+                                            )),
                                   );
                                 },
                               )
                             : Container(),
+                        Gap(10),
                       ],
                     ),
                   ),
@@ -103,7 +115,7 @@ class CustomAppBar extends StatelessWidget {
                           padding: const EdgeInsets.all(20.0),
                           child: TextFormField(
                             decoration: const InputDecoration(
-                                prefixIcon: Icon(ViceIcons.search),
+                                prefixIcon: Icon(AppIcons.search),
                                 border: InputBorder.none,
                                 hintText: 'Search'),
                           ))
@@ -124,9 +136,11 @@ class CustomAppBar extends StatelessWidget {
                             onPressed: () {
                               navPop(context);
                             },
-                            icon:  CircleAvatar(
+                            icon: CircleAvatar(
                                 radius: 25.0,
-                                backgroundColor: showColor == true ?   theme.primaryColor : Colors.transparent,
+                                backgroundColor: showColor == true
+                                    ? theme.primaryColor
+                                    : Colors.transparent,
                                 child: Icon(
                                   CupertinoIcons.back,
                                   color: theme.primaryColorDark,
@@ -152,16 +166,25 @@ class CustomAppBar extends StatelessWidget {
                                 onTap: () {
                                   Navigator.of(context).pushNamed('/checkout');
                                 },
-                                child: Badge(
-                                    label: Text(cartList.length.toString()),
-                                    child:  Icon(ViceIcons.cart,color: theme.primaryColorDark,)),
+                                child: cartList.length == 0
+                                    ? Icon(
+                                        AppIcons.cart,
+                                        color: theme.primaryColorDark,
+                                      )
+                                    : Badge(
+                                        label: Text(cartList.length.toString()),
+                                        child: Icon(
+                                          AppIcons.cart,
+                                          color: theme.primaryColorDark,
+                                        )),
                               );
                             },
                           )
                         : const SizedBox(),
+                    const Gap(10),
                   ],
                 ),
-                showSearchBar ? const Gap(20) : const Gap(0), 
+                showSearchBar ? const Gap(20) : const Gap(0),
                 showSearchBar
                     ? Container(
                         height: 60.0,
@@ -178,7 +201,7 @@ class CustomAppBar extends StatelessWidget {
                         padding: const EdgeInsets.all(20.0),
                         child: TextFormField(
                           decoration: const InputDecoration(
-                              prefixIcon: Icon(ViceIcons.search),
+                              prefixIcon: Icon(AppIcons.search),
                               border: InputBorder.none,
                               hintText: 'Search'),
                         ))

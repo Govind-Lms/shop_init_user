@@ -40,12 +40,12 @@ class _LoginScreenState extends State<LoginScreen> {
               TextField(
                 controller: _emailController,
                 textAlign: TextAlign.center,
-                style: ViceStyle.descStyle.copyWith(
+                style: AppStyle.descStyle.copyWith(
                   color: Theme.of(context).primaryColorDark,
                 ),
                 decoration: InputDecoration(
                   labelText: 'Email',
-                  labelStyle: ViceStyle.descStyle.copyWith(
+                  labelStyle: AppStyle.descStyle.copyWith(
                     color: Theme.of(context).primaryColorDark,
                   ),
                   enabledBorder: const OutlineInputBorder(
@@ -68,12 +68,12 @@ class _LoginScreenState extends State<LoginScreen> {
               TextField(
                 controller: _passController,
                 textAlign: TextAlign.center,
-                style: ViceStyle.descStyle.copyWith(
+                style: AppStyle.descStyle.copyWith(
                   color: Theme.of(context).primaryColorDark,
                 ),
                 decoration: InputDecoration(
                   labelText: 'Password',
-                  labelStyle: ViceStyle.descStyle.copyWith(
+                  labelStyle: AppStyle.descStyle.copyWith(
                     color: Theme.of(context).primaryColorDark,
                   ),
                   enabledBorder: const OutlineInputBorder(
@@ -113,7 +113,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     backgroundColor: theme.primaryColorDark,
                   ),
                   child: Text('Sign In',
-                      style: ViceStyle.descStyle
+                      style: AppStyle.descStyle
                           .copyWith(color: theme.primaryColor)),
                 ),
               ),
@@ -130,7 +130,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   const Spacer(),
                   Text('Forget Password?',
-                      style: ViceStyle.descStyle.copyWith(
+                      style: AppStyle.descStyle.copyWith(
                           color: theme.primaryColorDark,
                           fontWeight: FontWeight.bold)),
                 ],
@@ -173,7 +173,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   Icon(FontAwesomeIcons.google,color: theme.primaryColor),
                   const Gap(40),
                   Text('Sign In With Google',
-                      style: ViceStyle.descStyle
+                      style: AppStyle.descStyle
                           .copyWith(color: theme.primaryColor)),
                 ],
               ),

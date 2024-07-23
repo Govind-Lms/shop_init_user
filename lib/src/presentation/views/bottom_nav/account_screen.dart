@@ -61,7 +61,7 @@ class _AccountScreenState extends State<AccountScreen> {
                     navName(context, '/account_details');
                   },
                   icon:  Icon(
-                    ViceIcons.edit,
+                    AppIcons.edit,
                     color: theme.primaryColorDark,
                   )),
               const Gap(10.0),

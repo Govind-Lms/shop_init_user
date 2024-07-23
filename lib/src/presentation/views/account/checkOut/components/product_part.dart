@@ -38,10 +38,10 @@ class ProductPart extends StatelessWidget {
                   children: [
                     Text(
                       'Product Details',
-                      style: ViceStyle.normalStyle
+                      style: AppStyle.normalStyle
                           .copyWith(fontWeight: FontWeight.bold),
                     ),
-                    const Icon(ViceIcons.dropdown)
+                    const Icon(AppIcons.dropdown)
                   ],
                 ),
               ),
@@ -54,10 +54,10 @@ class ProductPart extends StatelessWidget {
                       children: [
                         Text(
                           'Product Details',
-                          style: ViceStyle.normalStyle
+                          style: AppStyle.normalStyle
                               .copyWith(fontWeight: FontWeight.bold),
                         ),
-                        const Icon(ViceIcons.dropup)
+                        const Icon(AppIcons.dropup)
                       ],
                     ),
                   ),
@@ -87,41 +87,35 @@ class ProductPart extends StatelessWidget {
                                 children: [
                                   Text(
                                     'Product Id',
-                                    style: ViceStyle.descStyle,
+                                    style: AppStyle.descStyle.copyWith(fontWeight: FontWeight.w600),
                                   ),
                                   Text(
                                     '#${cartLists[index].id}',
-                                    style: ViceStyle.descStyle,
+                                    style: AppStyle.descStyle.copyWith(fontStyle: FontStyle.italic),
                                   ),
                                 ],
                               ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    'Name',
-                                    style: ViceStyle.descStyle,
-                                  ),
-                                  Text(
+                              Text(
+                                'Name',
+                                style: AppStyle.descStyle.copyWith(fontWeight: FontWeight.w600),
+                              ),
+                              Text(
                                     cartLists[index].name,
-                                    style: ViceStyle.descStyle,
+                                    style: AppStyle.descStyle.copyWith(fontStyle: FontStyle.italic),
                                   ),
-                                ],
-                              ),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
                                     '${cartLists[index].totalPrice} Ks',
-                                    style: ViceStyle.titleStyle,
+                                    style: AppStyle.titleStyle,
                                   ),
                                   Text(
                                     'Qty: ${cartLists[index].quantity}',
-                                    style: ViceStyle.descStyle,
+                                    style: AppStyle.descStyle.copyWith(fontWeight: FontWeight.w600),
                                   ),
                                 ],
-                              ),
-                              
+                              ),                              
                             ],
                           ),
                         );
@@ -141,12 +135,12 @@ class ProductPart extends StatelessWidget {
             children: [
               Text(
                 'Sub Total',
-                style: ViceStyle.normalStyle,
+                style: AppStyle.normalStyle,
               ),
               Text(
                 '$total Ks',
                 style:
-                    ViceStyle.normalStyle.copyWith(fontWeight: FontWeight.bold),
+                    AppStyle.normalStyle.copyWith(fontWeight: FontWeight.bold),
               ),
             ],
           ),
@@ -156,12 +150,12 @@ class ProductPart extends StatelessWidget {
             children: [
               Text(
                 'Total Qty',
-                style: ViceStyle.normalStyle,
+                style: AppStyle.normalStyle,
               ),
               Text(
                 '$totalQty',
                 style:
-                    ViceStyle.normalStyle.copyWith(fontWeight: FontWeight.bold),
+                    AppStyle.normalStyle.copyWith(fontWeight: FontWeight.bold),
               ),
             ],
           ),
@@ -171,11 +165,11 @@ class ProductPart extends StatelessWidget {
             children: [
               Text(
                 'Delivery',
-                style: ViceStyle.normalStyle,
+                style: AppStyle.normalStyle,
               ),
               Text(
                 'Pick Up',
-                style: ViceStyle.normalStyle
+                style: AppStyle.normalStyle
                     .copyWith(fontWeight: FontWeight.bold, color: Colors.green),
               ),
             ],

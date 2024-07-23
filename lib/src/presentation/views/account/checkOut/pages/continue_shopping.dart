@@ -19,8 +19,8 @@ class ContinueShoppingPart extends StatelessWidget {
               showSearchBar: false,
               showDefinedName: true,
               showCart: false,
-              name: "Status",
-              showBack: true,
+              name: "",
+              showBack: false,
             ),
             const Gap(20),
             Padding(
@@ -31,7 +31,7 @@ class ContinueShoppingPart extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
               child: Text(
                 'Order Complete!',
-                style: ViceStyle.titleStyle
+                style: AppStyle.titleStyle
                     .copyWith(color: Theme.of(context).primaryColorDark),
               ),
             ),
@@ -52,7 +52,7 @@ class ContinueShoppingPart extends StatelessWidget {
                 child: Center(
                   child: Text(
                     'View Order',
-                    style: ViceStyle.normalStyle
+                    style: AppStyle.normalStyle
                         .copyWith(color: Theme.of(context).primaryColor),
                   ),
                 ),

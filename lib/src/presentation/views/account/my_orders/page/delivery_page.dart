@@ -45,19 +45,19 @@ class DeliveryPage extends StatelessWidget {
                   children: [
                     Text(
                       "Order Id   : #${orderModel.id}",
-                      style: ViceStyle.normalStyle,
+                      style: AppStyle.normalStyle,
                     ),
                     Text(
                       "Amount   :  ${orderModel.totalAmt}",
-                      style: ViceStyle.normalStyle,
+                      style: AppStyle.normalStyle,
                     ),
                     Text(
                       "Quantity  :  ${orderModel.totalQty}",
-                      style: ViceStyle.normalStyle,
+                      style: AppStyle.normalStyle,
                     ),
                     Text(
                       "Status      :  ${orderModel.approve}",
-                      style: ViceStyle.normalStyle,
+                      style: AppStyle.normalStyle,
                     ),
                   ],
                 ),
@@ -68,7 +68,7 @@ class DeliveryPage extends StatelessWidget {
                 margin: const EdgeInsets.symmetric(horizontal: 20),
                 child: Text(
                   "Order Status",
-                  style: ViceStyle.titleStyle,
+                  style: AppStyle.titleStyle,
                 )),
             Expanded(
               child: Padding(
@@ -161,11 +161,11 @@ class MyTimelineTile extends StatelessWidget {
                 children: [
                   Text(
                     title,
-                    style: ViceStyle.normalStyle,
+                    style: AppStyle.normalStyle,
                   ),
                   Text(
                     timestamp,
-                    style: ViceStyle.descStyle,
+                    style: AppStyle.descStyle,
                   ),
                 ],
               ),

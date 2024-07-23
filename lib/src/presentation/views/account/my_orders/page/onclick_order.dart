@@ -104,7 +104,7 @@ class ProductsPage extends StatelessWidget {
                 child: Text(
                   'View E Receipt',
                   style:
-                      ViceStyle.descStyle.copyWith(color: theme.primaryColor),
+                      AppStyle.descStyle.copyWith(color: theme.primaryColor),
                 ),
               ),
             ),
@@ -138,7 +138,7 @@ class ProductsPage extends StatelessWidget {
                 child: Text(
                   'Delivery',
                   style:
-                      ViceStyle.descStyle.copyWith(color: theme.primaryColor),
+                      AppStyle.descStyle.copyWith(color: theme.primaryColor),
                 ),
               ),
             ),

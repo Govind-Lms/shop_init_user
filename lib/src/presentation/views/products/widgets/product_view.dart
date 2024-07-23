@@ -131,8 +131,8 @@ class _ProductDesignState extends State<ProductDesign> {
                         }
                       },
                       icon: Icon(widget.productModel.isFavorite == false
-                          ? ViceIcons.heart
-                          : ViceIcons.heartFill,color: theme.primaryColorDark,),
+                          ? AppIcons.heart
+                          : AppIcons.heartFill,color: theme.primaryColorDark,),
                     ),
                   ),
                 ),
@@ -140,18 +140,19 @@ class _ProductDesignState extends State<ProductDesign> {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 5),
-              child: Row(
-                children: [
-                  Text(
-                    widget.productModel.name ?? '',
-                    style: ProductStyle.productNameStyle,
-                  ),
-                ],
+              child: SizedBox(
+                width: MediaQuery.sizeOf(context).width /2 - 40,
+                child: Text(
+                  widget.productModel.name ?? '',
+                  overflow: TextOverflow.ellipsis,
+                  style: ProductStyle.productNameStyle,
+                ),
               ),
             ),
                 
             ///price
             Container(
+
               padding: const EdgeInsets.symmetric(horizontal: 5),
               child: widget.productModel.isDiscounted == true ||
                       widget.productModel.discountPercent != '' ||
@@ -170,6 +171,7 @@ class _ProductDesignState extends State<ProductDesign> {
                 
             const Spacer(),
             Container(
+
               padding: const EdgeInsets.only(left: 5),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -178,7 +180,9 @@ class _ProductDesignState extends State<ProductDesign> {
                           widget.productModel.discountPercent != '' ||
                           widget.productModel.discountedPrice != 0
                       ? Text(
+                        
                           '${widget.productModel.discountedPrice}Ks',
+                          overflow: TextOverflow.ellipsis,
                           style: ProductStyle.priceStyle.copyWith(
                             color: Colors.green,
                           ),
@@ -225,7 +229,7 @@ class _ProductDesignState extends State<ProductDesign> {
                                   ),
                                   child: Center(
                                     child: Icon(
-                                      ViceIcons.check,
+                                      AppIcons.check,
                                       color: theme.primaryColor,
                                       size: 20,
                                     ),
@@ -243,7 +247,7 @@ class _ProductDesignState extends State<ProductDesign> {
                                   ),
                                   child: Center(
                                     child: Icon(
-                                      ViceIcons.cart,
+                                      AppIcons.cart,
                                       color: theme.primaryColor,
                                       size: 20,
                                     ),
